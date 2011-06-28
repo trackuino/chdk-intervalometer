@@ -1,6 +1,6 @@
 --[[
 @title Trackuino intervalometer
-@param m Mode (0=p+v 1=p)
+@param m Mode (0=p+v 1=p, 2=dial)
 @default m 0
 @param v Video length (secs)
 @default v 30
@@ -13,7 +13,7 @@
 @param f Prefocus (0=off, 1=on)
 @default f 1
 
-Version 1.0
+Version 1.01
 
 Read the docs at:
 http://code.google.com/p/trackuino/wiki/TrackuinoIntervalometer
@@ -226,11 +226,13 @@ if param_mode == 0 then
     
   end
   
-elseif param_mode == 1 then
+elseif param_mode == 1 or param_mode == 2 then
 
-  -- Mode: pics
-  mode_photo()
-  
+  if param_mode == 1 then
+    -- Mode: pics
+    mode_photo()
+ end
+
   -- Prefocus if the user wants so
   if param_prefocus == 1 then
     printf("Press SET to prefocus")
@@ -251,4 +253,3 @@ elseif param_mode == 1 then
   take_photo(0)
 
 end
-  
